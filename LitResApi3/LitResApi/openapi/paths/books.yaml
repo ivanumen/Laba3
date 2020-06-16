@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Book
+  summary: Получить информацию о всех книгах
+  operationId: GetBooks
+  description: |
+    Получить информацию о всех книгах
+  responses:
+    '200':
+      description: Информация о книгах была успешно получена
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Отказано в доступе
+post:
+  tags:
+    - Book
+  summary: Добавить новую книгу
+  operationId: PostBook
+  description: |
+    Добавить новую книгу
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Book.yaml
+  responses:
+    '200':
+      description: Книга была успешно добавлена
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Отказано в доступе
+    '422':
+      description: Неверные данные

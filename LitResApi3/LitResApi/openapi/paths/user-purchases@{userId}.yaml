@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Purchase
+  summary: Получить информацию о покупках пользователя
+  operationId: GetUserPurchases
+  description: |
+    Получить информацию о покупках пользователя
+  responses:
+    '200':
+      description: Информация о покупках пользователя была успешно получена
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Purchase.yaml
+    '401':
+      description: Отказано в доступе

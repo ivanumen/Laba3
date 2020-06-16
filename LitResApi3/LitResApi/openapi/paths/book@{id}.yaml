@@ -1,0 +1,57 @@
+get:
+  tags:
+    - Book
+  summary: Получить книгу по ID
+  operationId: GetBook
+  description: |
+    Получить информацию о книге по ID
+  responses:
+    '200':
+      description: Информация о книге успешно получена
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Отказано в доступе
+    '404':
+      description: Не найдено
+patch:
+  tags:
+    - Book
+  summary: Изменить книгу по ID
+  operationId: PatchBook
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Book.yaml
+  responses:
+    '201':
+      description: Книга была изменена
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Book.yaml
+    '401':
+      description: Отказано в доступе
+    '404':
+      description: Не найдено
+    '422':
+      description: Неверные данные
+delete:
+  tags:
+    - Book
+  summary: Удалить книгу по ID
+  operationId: DeleteBook
+  description: |
+    Удалить книгу по ID
+  responses:
+    '204':
+      description: Книга была удалена
+    '401':
+      description: Отказано в доступе
+    '402':
+      description: Не может быть удален
+    '404':
+      description: Не найдено

@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    description: Идентификатор пользователя
+    type: integer
+    readOnly: true
+  user:
+    description: Покупатель
+    allOf:
+      $ref: ./User.yaml
+  book:
+    description: Книга
+    allOf:
+      $ref: ./Book.yaml
+  createdTime:
+    description: Время создания
+    type: string

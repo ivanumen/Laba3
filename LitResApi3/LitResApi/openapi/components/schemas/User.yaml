@@ -1,0 +1,15 @@
+type: object
+required:
+  - name
+  - phone
+properties:
+  id:
+    description: Идентификатор пользователя
+    type: integer
+    readOnly: true
+  name:
+    description: ФИО пользователя
+    type: string
+  phone:
+    description: Номер телефона
+    type: string

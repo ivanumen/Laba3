@@ -1,0 +1,23 @@
+post:
+  tags:
+    - Purchase
+  summary: Добавить новую покупку
+  operationId: PostPurchase
+  description: |
+    Добавить новую покупку
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Purchase.yaml
+  responses:
+    '200':
+      description: Покупка была успешно добавлена
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Purchase.yaml
+    '401':
+      description: Отказано в доступе
+    '422':
+      description: Неверные данные

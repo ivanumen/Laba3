@@ -1,0 +1,18 @@
+type: object
+required:
+  - title
+  - price
+properties:
+  id:
+    description: Идентификатор пользователя
+    type: integer
+    readOnly: true
+  title:
+    description:  Название книги
+    type: string
+  description:
+    description: Описание книги
+    type: string
+  author:
+    description: Автор книги
+    type: string

@@ -1,0 +1,359 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: LitRes API
+  contact:
+    name: Ivan Umen
+    email: ivan.umen@gmail.com
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: User
+    description: |
+      User decription
+  - name: Book
+    description: |
+      Book decription
+  - name: Purchase
+    description: |
+      Purchase decription
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /users:
+    get:
+      tags:
+        - User
+      summary: Получить информацию о пользователях
+      operationId: GetUsers
+      description: |
+        Получить информацию о пользователях
+      responses:
+        '200':
+          description: Информация о пользователях была успешно получена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Отказано в доступе
+    post:
+      tags:
+        - User
+      summary: Добавить нового пользователя
+      operationId: PostUser
+      description: |
+        Добавить нового пользователя
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Пользователь был успешно добавлен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Отказано в доступе
+        '422':
+          description: Неверные данные
+  '/user/{id}':
+    get:
+      tags:
+        - User
+      summary: Получить пользователя по ID
+      operationId: GetUser
+      description: |
+        Получить информацию о пользователе по ID
+      responses:
+        '200':
+          description: Информация о пользователе успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Отказано в доступе
+        '404':
+          description: Не найдено
+    patch:
+      tags:
+        - User
+      summary: изменить пользователя по ID
+      operationId: PatchUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Пользователь был изменен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Отказано в доступе
+        '404':
+          description: Не найдено
+        '409':
+          description: Пользователь существует и не может быть обновлен
+        '422':
+          description: Неверные данные
+    delete:
+      tags:
+        - User
+      summary: Удалить пользователя по ID
+      operationId: DeleteUser
+      description: |
+        Удалить пользователя по ID
+      responses:
+        '204':
+          description: Пользователь был удален
+        '401':
+          description: Отказано в доступе
+        '402':
+          description: Не может быть удален
+        '404':
+          description: Не найдено
+  /books:
+    get:
+      tags:
+        - Book
+      summary: Получить информацию о всех книгах
+      operationId: GetBooks
+      description: |
+        Получить информацию о всех книгах
+      responses:
+        '200':
+          description: Информация о книгах была успешно получена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '401':
+          description: Отказано в доступе
+    post:
+      tags:
+        - Book
+      summary: Добавить новую книгу
+      operationId: PostBook
+      description: |
+        Добавить новую книгу
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '200':
+          description: Книга была успешно добавлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Отказано в доступе
+        '422':
+          description: Неверные данные
+  '/book/{id}':
+    get:
+      tags:
+        - Book
+      summary: Получить книгу по ID
+      operationId: GetBook
+      description: |
+        Получить информацию о книге по ID
+      responses:
+        '200':
+          description: Информация о книге успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Отказано в доступе
+        '404':
+          description: Не найдено
+    patch:
+      tags:
+        - Book
+      summary: Изменить книгу по ID
+      operationId: PatchBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Книга была изменена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '401':
+          description: Отказано в доступе
+        '404':
+          description: Не найдено
+        '422':
+          description: Неверные данные
+    delete:
+      tags:
+        - Book
+      summary: Удалить книгу по ID
+      operationId: DeleteBook
+      description: |
+        Удалить книгу по ID
+      responses:
+        '204':
+          description: Книга была удалена
+        '401':
+          description: Отказано в доступе
+        '402':
+          description: Не может быть удален
+        '404':
+          description: Не найдено
+  /purchase:
+    post:
+      tags:
+        - Purchase
+      summary: Добавить новую покупку
+      operationId: PostPurchase
+      description: |
+        Добавить новую покупку
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchase'
+      responses:
+        '200':
+          description: Покупка была успешно добавлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        '401':
+          description: Отказано в доступе
+        '422':
+          description: Неверные данные
+  '/purchase/{id}':
+    get:
+      tags:
+        - Purchase
+      summary: Получить покупке по ID
+      operationId: GetPurchase
+      description: |
+        Получить информацию о покупке по ID
+      responses:
+        '200':
+          description: Информация о покупке успешно получена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        '401':
+          description: Отказано в доступе
+        '404':
+          description: Не найдено
+    delete:
+      tags:
+        - Purchase
+      summary: Удалить покупку по ID
+      operationId: DeletePurchase
+      description: |
+        Удалить покупку по ID
+      responses:
+        '204':
+          description: Покупка была удалена
+        '401':
+          description: Отказано в доступе
+        '402':
+          description: Не может быть удален
+        '404':
+          description: Не найдено
+  '/user-purchases/{userId}':
+    get:
+      tags:
+        - Purchase
+      summary: Получить информацию о покупках пользователя
+      operationId: GetUserPurchases
+      description: |
+        Получить информацию о покупках пользователя
+      responses:
+        '200':
+          description: Информация о покупках пользователя была успешно получена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Purchase'
+        '401':
+          description: Отказано в доступе
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - name
+        - phone
+      properties:
+        id:
+          description: Идентификатор пользователя
+          type: integer
+          readOnly: true
+        name:
+          description: ФИО пользователя
+          type: string
+        phone:
+          description: Номер телефона
+          type: string
+    Book:
+      type: object
+      required:
+        - title
+        - price
+      properties:
+        id:
+          description: Идентификатор пользователя
+          type: integer
+          readOnly: true
+        title:
+          description: Название книги
+          type: string
+        description:
+          description: Описание книги
+          type: string
+        author:
+          description: Автор книги
+          type: string
+    Purchase:
+      type: object
+      properties:
+        id:
+          description: Идентификатор пользователя
+          type: integer
+          readOnly: true
+        user:
+          description: Покупатель
+          allOf:
+            $ref: '#/components/schemas/User'
+        book:
+          description: Книга
+          allOf:
+            $ref: '#/components/schemas/Book'
+        createdTime:
+          description: Время создания
+          type: string

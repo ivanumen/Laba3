@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: LitRes API
+  contact:
+    name: Ivan Umen
+    email: ivan.umen@gmail.com
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: User
+    description: |
+      User decription
+  - name: Book
+    description: |
+      Book decription
+  - name: Purchase
+    description: |
+      Purchase decription
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /users:
+    $ref: ./paths/users.yaml
+  /user/{id}:
+    $ref: ./paths/user@{id}.yaml
+  /books:
+    $ref: ./paths/books.yaml
+  /book/{id}:
+    $ref: ./paths/book@{id}.yaml
+  /purchase:
+    $ref: ./paths/purchase.yaml
+  /purchase/{id}:
+    $ref: ./paths/purchase@{id}.yaml
+  /user-purchases/{userId}:
+    $ref: ./paths/user-purchases@{userId}.yaml
